@@ -99,8 +99,9 @@ The dimensions of the dataset are:
 ```{r}
 dim(wq)
 ```
+We have 4898 rows and 13 variables in the dataset - 11 physicochemical 
+properties, 1 quality rating and 1 index/serial number
 
-We have 4898 rows and 13 variables in the dataset
 
 Let's examine the variables and the kind of data they hold
 
@@ -125,7 +126,7 @@ Let's check for missing or null values in the dataset
 any(is.na(wq))
 ```
 
- No, we do not have missing values in the dataset
+We do not have missing values in the dataset
  
  
 # Univariate Analysis
