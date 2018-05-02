@@ -32,8 +32,8 @@ names(wq)
 This data set contains data on white variants of the Portuguese "Vinho Verde" 
 wine. There are 11 variables quantifying the chemical properties of each wine. 
 At least 3 wine experts rated the quality of each wine, providing a rating between 
-0 (very bad) and 10 (very excellent).
-This dataset is publicly available for research.
+0 (very bad) and 10 (very excellent).This dataset is publicly available for 
+research.
 
 Citation:  P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis. 
   Modeling wine preferences by data mining from physicochemical properties.
@@ -88,27 +88,33 @@ sensory data (median of at least 3 evaluations made by wine experts).
 
 # Research Question
 
-This project investigates Which chemical properties influence the quality of 
+This project investigates which chemical properties influence the quality of 
 white wines
 
 # Univariate Plots Section
 
-> **Tip**: In this section, you should perform some preliminary exploration of
-your dataset. Run some summaries of the data and create univariate plots to
-understand the structure of the individual variables in your dataset. Don't
-forget to add a comment after each plot or closely-related group of plots!
-There should be multiple code chunks and text sections; the first one below is
-just to help you get started.
+## In this section, we will perform some preliminary exploration of the dataset- 
+Running some summaries of the data and creating univariate plots to
+understand the structure of the individual variables in the dataset. 
 
-```{r echo=FALSE, Univariate_Plots}
-str(wq)
+
+```{r}
+dim(wq)
 ```
 
-> **Tip**: Make sure that you leave a blank line between the start / end of
-each code block and the end / start of your Markdown text so that it is
-formatted nicely in the knitted text. Note as well that text on consecutive
-lines is treated as a single space. Make sure you have a blank line between
-your paragraphs so that they too are formatted for easy readability.
+```{r echo=FALSE, Univariate_Plots}
+
+str(wq)
+
+```
+
+
+```{r}
+
+summary(wq)
+
+```
+
 
 # Univariate Analysis
 
