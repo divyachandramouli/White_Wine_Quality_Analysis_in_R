@@ -30,7 +30,7 @@ names(wq)
 # Introduction to the dataset
 
 This data set contains data on white variants of the Portuguese "Vinho Verde" 
-wine. There are 11 variables on quantifying the chemical properties of each wine. 
+wine. There are 11 variables quantifying the chemical properties of each wine. 
 At least 3 wine experts rated the quality of each wine, providing a rating between 
 0 (very bad) and 10 (very excellent).
 This dataset is publicly available for research.
@@ -85,6 +85,11 @@ sensory data (median of at least 3 evaluations made by wine experts).
    Output variable (based on sensory data): 
    
 12 - quality (score between 0 and 10)
+
+# Research Question
+
+This project investigates Which chemical properties influence the quality of 
+white wines
 
 # Univariate Plots Section
 
