@@ -123,10 +123,62 @@ summary(wq)
 Let's check for missing or null values in the dataset
 
 ```{r}
+
 any(is.na(wq))
+
 ```
 
-We do not have missing values in the dataset
+We do not any have missing values in the dataset
+ 
+ 
+Are here duplicate records in the dataset? 
+ 
+```{r}
+
+sum(duplicated(wq))
+
+```
+ 
+ No, the dataset does not have duplicate records
+ 
+ Now, Let's study each variable in detail
+ 
+ 1. Fixed acidity 
+ 
+```{r}
+table(wq$fixed.acidity)
+
+```
+ 
+ 
+ 
+```{r}
+
+ggplot(aes(x= fixed.acidity), data = wq)+geom_histogram(binwidth = 0.05)+ 
+  scale_x_continuous(breaks=seq(3,15),limits =c(3,15))
+
+```
+ 
+ The distribution of fixed acidity looks like the 
+ bell curve (close to normal distribution). The range of fixed acidity is from
+ 3.8 to 14.2 from the summary table. In the plot we can clearly see that the 
+ fixed acidity values for the bulk of wines lies between 4 and 10 with outliers 
+ on the right. 6.8 is the most commonly occurring value of fixed acidity 
+ 
+ 
+  2. Volatile acidity 
+  
+```{r}
+table(wq$volatile.acidity)
+```
+  
+ 
+```{r}
+
+ggplot(aes(x= volatile.acidity), data = wq)+geom_histogram(binwidth = 0.001)
+
+```
+ 
  
  
 # Univariate Analysis
