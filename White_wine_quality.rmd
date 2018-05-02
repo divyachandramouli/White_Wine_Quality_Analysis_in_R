@@ -100,6 +100,8 @@ The dimensions of the dataset are:
 dim(wq)
 ```
 
+We have 4898 rows and 13 variables in the dataset
+
 Let's examine the variables and the kind of data they hold
 
 
@@ -117,7 +119,15 @@ summary(wq)
 
 ```
 
+Let's check for missing or null values in the dataset
 
+```{r}
+any(is.na(wq))
+```
+
+ No, we do not have missing values in the dataset
+ 
+ 
 # Univariate Analysis
 
 > **Tip**: Now that you've completed your univariate explorations, it's time to
