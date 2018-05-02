@@ -94,7 +94,7 @@ In this section, we will perform some preliminary exploration of the dataset-
 Running some summaries of the data and creating univariate plots to
 understand the structure of the individual variables in the dataset. 
 
-##Dimensions of the dataset
+## Dimensions of the dataset
 
 ```{r}
 dim(wq)
