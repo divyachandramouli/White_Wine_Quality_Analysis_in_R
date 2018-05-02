@@ -40,7 +40,9 @@ Citation:  P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
   In Decision Support Systems, Elsevier, 47(4):547-553. ISSN: 0167-9236.
 
   Available at: [@Elsevier] http://dx.doi.org/10.1016/j.dss.2009.05.016
+  
           [Pre-press (pdf)] http://www3.dsi.uminho.pt/pcortez/winequality09.pdf
+          
           [bib] http://www3.dsi.uminho.pt/pcortez/dss09.bib
                 
 The inputs include objective tests (e.g. PH values) and the output is based on 
@@ -93,7 +95,7 @@ white wines
 
 # Univariate Plots Section
 
-## In this section, we will perform some preliminary exploration of the dataset- 
+In this section, we will perform some preliminary exploration of the dataset- 
 Running some summaries of the data and creating univariate plots to
 understand the structure of the individual variables in the dataset. 
 
