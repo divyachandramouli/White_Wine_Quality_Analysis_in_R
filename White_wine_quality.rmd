@@ -103,7 +103,7 @@ We have 4898 rows and 13 variables in the dataset - 11 physicochemical
 properties, 1 quality rating and 1 index/serial number
 
 
-Let's examine the variables and the kind of data they hold
+### Let's examine the variables and the type of data they hold
 
 
 ```{r echo=FALSE, Univariate_Plots}
@@ -112,7 +112,7 @@ str(wq)
 
 ```
 
-Looking at the summary of the dataset,
+### Summary of the dataset
 
 ```{r}
 
@@ -120,7 +120,7 @@ summary(wq)
 
 ```
 
-Let's check for missing or null values in the dataset
+### Check for missing or null values in the dataset
 
 ```{r}
 
@@ -131,7 +131,7 @@ any(is.na(wq))
 We do not any have missing values in the dataset
  
  
-Are here duplicate records in the dataset? 
+### Are there duplicate records in the dataset? 
  
 ```{r}
 
@@ -141,7 +141,7 @@ sum(duplicated(wq))
  
  No, the dataset does not have duplicate records
  
- Now, Let's study each variable in detail
+### Now, Let's study each variable in detail
  
  1. Fixed acidity 
  
