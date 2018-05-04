@@ -155,7 +155,7 @@ table(wq$fixed.acidity)
 ```{r}
 
 ggplot(aes(x= fixed.acidity), data = wq)+geom_histogram(binwidth = 0.05)+ 
-  scale_x_continuous(breaks=seq(3,15),limits =c(3,15))
+  scale_x_continuous(breaks=seq(3,15),limits = c(3,15))
 
 ```
  
@@ -179,15 +179,173 @@ ggplot(aes(x= volatile.acidity), data = wq)+geom_histogram(binwidth = 0.001)
 
 ```
  
+ The distribution of volatile acidity looks skewed to the right. 
+ Most common value of volatile acidity is 0.28. Bulk of the 
+ wines have volatile acidity value under 0.6.
  
+ Since the distribution is skewed to the right, let us try a log10 transform 
+ 
+```{r}
+ggplot(aes(x= volatile.acidity), data = wq)+geom_histogram(binwidth = 0.001)+scale_x_log10()
+```
+ 
+ Now the distribution looks closer to the bell curve of normal distribution
+ 
+ 
+ #### Citric acid
+ 
+```{r}
+table(wq$citric.acid)
+```
+ 
+ 
+```{r}
+ggplot(aes(x= citric.acid), data = wq)+geom_histogram(binwidth=0.002)
+```
+ 
+ Bulk of the citric acid data looks normally distributed. There is an outlier 
+ with the value 1.66
+ 
+ #### Residual sugar
+ 
+```{r}
+table(wq$residual.sugar)
+
+```
+ 
+ 
+```{r}
+ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)
+```
+ 
+ The distribution of residual sugar looks clearly skewed to the right with the 
+ maxvalue of 65.8 being an outlier
+ 
+ Let's try a log10 transform on the data
+ 
+```{r}
+
+ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)+scale_x_log10()
+```
+ 
+ Now the distribution looks bimodal
+ 
+ If we trim the top 1% of residual sugar data, let's see how the distribution looks
+ 
+```{r}
+ ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)+
+  xlim(0, quantile(wq$residual.sugar, probs = 0.99))
+```
+ 
+ the distribution is still skewed to the right after trimming the top 1% of data
+ 
+ #### Chlorides
+ 
+```{r}
+
+table(wq$chlorides)
+```
+ 
+ 
+```{r}
+ggplot(aes(x= chlorides), data = wq)+geom_histogram(binwidth=0.0005)
+```
+ 
+ The distribution of chloride values looks skewed to the right with a thin and 
+ long tail on the right
+ 
+ 
+ Let us trim the top 3% of chloride values and see how our data looks
+ 
+```{r}
+
+ggplot(aes(x= chlorides), data = wq)+geom_histogram(binwidth=0.0005)+
+  xlim(0, quantile(wq$chlorides, probs=0.97))
+```
+ 
+ 
+ Now the data looks a little closer to normal distribution. But it might not be
+ a good idea to lose 3% of the data
+ 
+ 
+ #### Free Sulphur dioxide
+ 
+```{r}
+table(wq$free.sulfur.dioxide)
+```
+ 
+```{r}
+ggplot(aes(x= free.sulfur.dioxide), data = wq)+geom_histogram(binwidth =1)
+```
+ The distribution of free sulphurdioxide looks skewed to the right. 
+ 
+ #### Total Sulphur dioxide
+```{r}
+table(wq$total.sulfur.dioxide)
+```
+ 
+```{r}
+ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram()
+```
+ 
+ #### Density
+ 
+```{r}
+table(wq$density)
+```
+
+
+```{r}
+ggplot(aes(x= density), data = wq)+geom_histogram()
+```
+
+ #### pH
+
+```{r}
+table(wq$pH)
+```
+
+
+```{r}
+ggplot(aes(x= pH), data = wq)+geom_histogram()
+```
+
+ #### Sulphates
+ 
+```{r}
+table(wq$sulphates)
+```
+ 
+```{r}
+ggplot(aes(x= sulphates), data = wq)+geom_histogram()
+```
+ 
+ #### Alcohol
+```{r}
+table(wq$alcohol)
+```
+ 
+```{r}
+ggplot(aes(x= alcohol), data = wq)+geom_histogram()
+```
+ 
+ #### Quality
+ 
+```{r}
+table(wq$quality)
+```
+ 
+ 
+```{r}
+ggplot(aes(x= quality), data = wq)+geom_histogram()
+```
  
 # Univariate Analysis
 
-> **Tip**: Now that you've completed your univariate explorations, it's time to
-reflect on and summarize what you've found. Use the questions below to help you
-gather your observations and add your own if you have other thoughts!
 
 ### What is the structure of your dataset?
+
+
 
 ### What is/are the main feature(s) of interest in your dataset?
 
@@ -210,6 +368,7 @@ supporting variables. Try to look at relationships between supporting variables
 as well.
 
 ```{r echo=FALSE, Bivariate_Plots}
+
 
 ```
 
