@@ -285,9 +285,9 @@ table(wq$total.sulfur.dioxide)
 ```
  
 ```{r}
-ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram()
+ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram(binwidth=1)
 ```
- 
+ The bulk of total sulphur dioxide data looks normally distributed with a few outliers on the right
  #### Density
  
 ```{r}
