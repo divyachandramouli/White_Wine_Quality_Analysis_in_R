@@ -103,7 +103,8 @@ We have 4898 rows and 13 variables in the dataset - 11 physicochemical
 properties, 1 quality rating and 1 index/serial number
 
 
-### Let's examine the variables and the type of data they hold
+### Let's examine the structure of the dataframe, the variables and the type of
+data they hold
 
 
 ```{r echo=FALSE, Univariate_Plots}
@@ -395,7 +396,11 @@ ggplot(aes(x= quality), data = wq)+geom_histogram()
 
 ### What is the structure of your dataset?
 
-
+The dataset contains 4898 rows/observations with 13 variables/columns
+eleven of the columns represent physicochemical properties of wines and hold 
+numerical values, one of the columns is the index/ID of each row which is an
+integer and  one of the columns holds the quality rating for the wine which 
+is also an integer
 
 ### What is/are the main feature(s) of interest in your dataset?
 
