@@ -312,8 +312,11 @@ table(wq$pH)
 
 
 ```{r}
-ggplot(aes(x= pH), data = wq)+geom_histogram()
+ggplot(aes(x= pH), data = wq)+geom_histogram(binwidth=0.001)
 ```
+
+pH values appear to be normally distributed. From domain knowledge, we can 
+expect pH / acidity to be key factors influencing the quality of wine 
 
  #### Sulphates
  
@@ -322,8 +325,19 @@ table(wq$sulphates)
 ```
  
 ```{r}
-ggplot(aes(x= sulphates), data = wq)+geom_histogram()
+ggplot(aes(x= sulphates), data = wq)+geom_histogram(binwidth=0.01)
 ```
+ 
+ The distribution of sulphates appears skewed to the right
+ 
+ Let us transform the sulphates axis on a log10 scale
+ 
+ 
+```{r}
+ggplot(aes(x= sulphates), data = wq)+geom_histogram(binwidth=0.01)+
+  scale_x_log10()
+```
+The distribution of sulphates appears closer to normal distribution with a log10 transformation
  
  #### Alcohol
 ```{r}
