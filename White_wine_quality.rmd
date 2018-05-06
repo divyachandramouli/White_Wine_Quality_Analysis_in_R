@@ -277,7 +277,7 @@ table(wq$free.sulfur.dioxide)
 ```{r}
 ggplot(aes(x= free.sulfur.dioxide), data = wq)+geom_histogram(binwidth =1)
 ```
- The distribution of free sulphurdioxide looks skewed to the right. 
+ The distribution of free sulphurdioxide looks skewed to the right with an outlier point at  289
  
  #### Total Sulphur dioxide
 ```{r}
@@ -287,17 +287,22 @@ table(wq$total.sulfur.dioxide)
 ```{r}
 ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram(binwidth=1)
 ```
- The bulk of total sulphur dioxide data looks normally distributed with a few outliers on the right
+ The bulk of total sulphur dioxide data looks normally distributed with a 
+ few outliers on the right
+ 
  #### Density
  
 ```{r}
-table(wq$density)
+ggplot(aes(x= density), data = wq)+geom_histogram(binwidth=0.0001)
 ```
+The distribution of density looks almost normally distributed 
 
 
 ```{r}
-ggplot(aes(x= density), data = wq)+geom_histogram()
+summary(wq$density)
 ```
+
+Few wines seem to have a density greater than 1 
 
  #### pH
 
