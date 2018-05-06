@@ -370,6 +370,8 @@ ggplot(aes(x= alcohol), data = wq)+geom_histogram()+
 The sqrt transformation also doesn't seem to make the alcohol level data 
 normally distributed
 
+From common knowledge, alcohol levels of wine could be a key influencer of wine 
+quality
 
  #### Quality
  
@@ -381,6 +383,9 @@ table(wq$quality)
 ```{r}
 ggplot(aes(x= quality), data = wq)+geom_histogram()
 ```
+ 
+ 
+ 
  
 # Univariate Analysis
 
