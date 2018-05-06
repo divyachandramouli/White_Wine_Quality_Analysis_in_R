@@ -345,9 +345,32 @@ table(wq$alcohol)
 ```
  
 ```{r}
-ggplot(aes(x= alcohol), data = wq)+geom_histogram()
+ggplot(aes(x= alcohol), data = wq)+geom_histogram(binwidth=0.01)
 ```
  
+ The histogram for alcohol level does not look normally distributed.
+ 
+ let us try a log10 transform on alcohol level data
+ 
+```{r}
+ggplot(aes(x= alcohol), data = wq)+geom_histogram()+
+  scale_x_log10()
+```
+ 
+Even after the log10 transformation, alcohol level data does not look normally
+distributed
+
+Let us try a sqrt transform on the alcohol level data
+
+```{r}
+ggplot(aes(x= alcohol), data = wq)+geom_histogram()+
+  scale_x_sqrt()
+```
+
+The sqrt transformation also doesn't seem to make the alcohol level data 
+normally distributed
+
+
  #### Quality
  
 ```{r}
