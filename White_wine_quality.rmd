@@ -230,7 +230,7 @@ ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)
 ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)+scale_x_log10()
 ```
  
- Now the distribution looks bimodal
+ Now the distribution looks bimodal with peaks at about 1 and 9 values of residual sugar
  
  If we trim the top 1% of residual sugar data, let's see how the distribution looks
  
@@ -409,7 +409,7 @@ is also an integer
 
 The goal of this project is to investigate the influence of the physicochemical 
 properties on the quality of wine. Therefore, quality rating is one of the main 
-features of interest.  
+features of interest along with some other properties. 
 
 ### What other features in the dataset do you think will help support your \
 investigation into your feature(s) of interest?
@@ -431,7 +431,9 @@ Did you perform any operations on the data to tidy, adjust, or change the form \
 of the data? If so, why did you do this?
 
 The data was assessed for missing or duplicate values. It appeared fairly tidy 
-and prepared for analysis. 
+and prepared for analysis. Some distributions were heavily skewed and I used
+log transformation of data and tried trimming a portion of the data to look at 
+the distribution 
 
 # Bivariate Plots Section
 
@@ -447,11 +449,16 @@ Let us look at a scatterplot matrix to explore relationships between variables
 ggpairs(wq)
 ```
 
-let's look at the correlation coefficicents (rounded to 2 decimals) for all variables in the dataset
+Let's look at the correlation coefficicents (rounded to 2 decimals) for all variables in the dataset
 ```{r}
-round(cor(wq),2)
+corr_coeff <- round(cor(wq),1)
+corr_coeff
 ```
 
+
+
+We are most interested in how quality is affected by the physicochemical 
+properties 
 
 
 # Bivariate Analysis
