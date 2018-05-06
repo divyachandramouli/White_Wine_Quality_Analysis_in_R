@@ -16,6 +16,7 @@ White Wine Quality Analysis by Divya Chandramouli
 # want it to. This will clean up the flow of your report.
 
 library(ggplot2)
+library(GGally)
 ```
 
 
@@ -440,10 +441,18 @@ yourself to relationships between a main output feature and one of the
 supporting variables. Try to look at relationships between supporting variables
 as well.
 
+Let us look at a scatterplot matrix to explore relationships between variables
+
 ```{r echo=FALSE, Bivariate_Plots}
-
-
+ggpairs(wq)
 ```
+
+let's look at the correlation coefficicents (rounded to 2 decimals) for all variables in the dataset
+```{r}
+round(cor(wq),2)
+```
+
+
 
 # Bivariate Analysis
 
@@ -470,6 +479,7 @@ you plan on creating any mathematical models, this is the section where you
 will do that.
 
 ```{r echo=FALSE, Multivariate_Plots}
+
 
 ```
 
