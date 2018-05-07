@@ -497,11 +497,20 @@ kable(m_zcor)
 We see some moderate and some strong relationships from the table above
 Fixed acidity and pH have a moderate negative correlation, which can be reasoned 
 out as pH value decreases with increasing acidity.
-Residual sugar has a stromg positive correlation with density which makes sense 
+Residual sugar has a strong positive correlation with density which makes sense 
 as more sugar makes the wine denser
 Free and total sulphur dioxide have a strong positive relationship which is 
-expected, because total sulphur dioxide is a sum of free and bound sulphurdioxide
+expected, because total sulphur dioxide is the sum of free and bound sulphurdioxide
+Alcohol and density have a strong negative relationship suggesting that higher 
+alcohol content results in lesser wine density . Alcohol is less dense than water, 
+so this relationship seems to make sense
 
+### Spearman's correlation coefficients for quality and other variables
+Spearman's correlation is generally used when ordinal variables are invloved. 
+In this case we want to correlate continuous variables with an ordinal variable.
+For the purpose of this course, I have used Spearman's coefficient but there 
+could be more complex but more suited methods to accomplish this.
+The following are the Spearman correlation coefficients for all variables with quality:
 
 ```{r}
 cor(wq[, c(2:13)],
