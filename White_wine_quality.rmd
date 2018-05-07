@@ -421,14 +421,16 @@ dataset
 
 ### Did you create any new variables from existing variables in the dataset?
 
-No, from just univariate exploration, it cannot be ascertained if new variables 
+No, from just univariate exploration, it could not be ascertained if new variables 
 need to be created.It will be looked at if further exploration gives rise to 
-the need of creating more variables
+the need for creating more variables
 
 ### Of the features you investigated, were there any unusual distributions? \
 Did you perform any operations on the data to tidy, adjust, or change the form \
 of the data? If so, why did you do this?
 
+The data was assessed for missing or duplicate values. It appeared fairly tidy 
+and prepared for analysis. 
 
 # Bivariate Plots Section
 
