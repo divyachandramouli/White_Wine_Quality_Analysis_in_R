@@ -17,6 +17,16 @@ White Wine Quality Analysis by Divya Chandramouli
 
 library(ggplot2)
 library(GGally)
+library(scales)
+library(gridExtra)
+library(RColorBrewer)
+library(knitr)
+```
+
+
+```{r}
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
 
@@ -431,7 +441,7 @@ Did you perform any operations on the data to tidy, adjust, or change the form \
 of the data? If so, why did you do this?
 
 The data was assessed for missing or duplicate values. It appeared fairly tidy 
-and prepared for analysis. Some distributions were heavily skewed and I used
+and prepared for analysis. Some distributions were heavily skewed, so I used
 log transformation of data and tried trimming a portion of the data to look at 
 the distribution 
 
@@ -443,22 +453,61 @@ yourself to relationships between a main output feature and one of the
 supporting variables. Try to look at relationships between supporting variables
 as well.
 
-Let us look at a scatterplot matrix to explore relationships between variables
+Let us look at a scatterplot matrix to explore relationships between variables. 
+Let us leave 'quality' (it is a categorical ordinal variable)
+and 'X' (which is the index/count) out.  
 
 ```{r echo=FALSE, Bivariate_Plots}
-ggpairs(wq)
+wq_1 = wq[,c(2:12)]
+ggpairs(wq_1)
 ```
 
-Let's look at the correlation coefficicents (rounded to 2 decimals) for all variables in the dataset
+Let's look at the correlation coefficicents for all variables in the dataset. 
+It does not make sense to include the 'X' variable which is the index, when we
+want to look at correlations. Since quality is a categorical ordinal variable, 
+the Spearman correlation coefficient should be calculated.
+So, I am using the dataframe excluding X and quality
+
+
+
+The correlation coefficients for all variables in the dataset rounded to one
+decimal place:
+
 ```{r}
-corr_coeff <- round(cor(wq),1)
+corr_coeff=round(cor(wq_1),1)
 corr_coeff
 ```
 
+From these correlation coefficients, the values that are greater than |0.3| are 
+interpreted to be more meaningful as they signify a moderate/strong relationship
 
 
-We are most interested in how quality is affected by the physicochemical 
-properties 
+```{r}
+corr_coeff[abs(corr_coeff) > 0.3]
+```
+Below are the variables and correlation coefficients with absolute values
+that are > 0.3
+
+```{r}
+zcor <- as.data.frame(as.table(corr_coeff))
+m_zcor <- subset(zcor,abs(Freq)>=0.3)
+kable(m_zcor)
+```
+
+We see some moderate and some strong relationships from the table above
+Fixed acidity and pH have a moderate negative correlation, which can be reasoned 
+out as pH value decreases with increasing acidity.
+Residual sugar has a stromg positive correlation with density which makes sense 
+as more sugar makes the wine denser
+Free and total sulphur dioxide have a strong positive relationship which is 
+expected, because total sulphur dioxide is a sum of free and bound sulphurdioxide
+
+
+```{r}
+cor(wq[, c(2:13)],
+    method = 'spearman')[ ,12]
+```
+
 
 
 # Bivariate Analysis
