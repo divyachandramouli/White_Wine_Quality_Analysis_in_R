@@ -494,16 +494,36 @@ m_zcor <- subset(zcor,abs(Freq)>=0.3)
 kable(m_zcor)
 ```
 
-We see some moderate and some strong relationships from the table above
-Fixed acidity and pH have a moderate negative correlation, which can be reasoned 
-out as pH value decreases with increasing acidity.
-Residual sugar has a strong positive correlation with density which makes sense 
+We see some moderate and some strong relationships from the table above:
+
+- Fixed acidity and pH have a moderate negative correlation, which can be reasoned 
+out as pH value decreases with increasing acidity
+
+- Residual sugar has a strong positive correlation with density which makes sense 
 as more sugar makes the wine denser
-Free and total sulphur dioxide have a strong positive relationship which is 
+
+- Free and total sulphur dioxide have a strong positive relationship which is 
 expected, because total sulphur dioxide is the sum of free and bound sulphurdioxide
-Alcohol and density have a strong negative relationship suggesting that higher 
+
+- Alcohol and density have a strong negative relationship suggesting that higher 
 alcohol content results in lesser wine density . Alcohol is less dense than water, 
 so this relationship seems to make sense
+
+Let us visualize the relationship between residual sugar and density since it is
+strong
+
+```{r}
+ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point()
+```
+
+
+Let's limit the axis, reduce overplotting and look at the plot
+
+```{r}
+ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point(alpha=1/10)+scale_x_continuous(limits=c(0.98, 1.015))
+```
+
+
 
 ### Spearman's correlation coefficients for quality and other variables
 Spearman's correlation is generally used when ordinal variables are invloved. 
@@ -513,10 +533,59 @@ could be more complex but more suited methods to accomplish this.
 The following are the Spearman correlation coefficients for all variables with quality:
 
 ```{r}
-cor(wq[, c(2:13)],
+quality_cor <-cor(wq[, c(2:13)],
     method = 'spearman')[ ,12]
+
+quality_cor<-as.data.frame(quality_cor)
+print(quality_cor)
 ```
 
+From the above values we find that 
+ - Quality and Chlorides are moderately negatively correlated
+ - Quality and density are moderately negatively correlated
+ - Quality and alcohol are positively correlated 
+ 
+Let's explore the relationships between Quality and a few variables in more detail
+
+Summary statistics for wine density
+```{r}
+summary(wq$density)
+```
+
+
+The following is the summary statistics of density grouped by quality
+```{r}
+by(wq$density, wq$quality,summary)
+```
+
+From the statistics above we see that higher quality wines seem to have lesser density
+
+Let us create a boxplot of density and quality
+
+```{r}
+ggplot(aes(x=factor(quality), y=density), data=wq)+geom_boxplot(fill='pink')+stat_summary(funy = mean, color='blue',geom='point', size=2)
+```
+
+The blue dot marks the mean density of each quality level of wine
+
+
+
+Boxplot of alcohol level and quality
+
+```{r}
+
+```
+
+```{r}
+by(wq$alcohol, wq$quality,summary)
+
+```
+
+
+
+```{r}
+by(wq$residual.sugar,wq$quality,summary)
+```
 
 
 # Bivariate Analysis
