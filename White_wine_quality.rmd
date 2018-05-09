@@ -573,7 +573,7 @@ The blue dot marks the mean density of each quality level of wine
 Boxplot of alcohol level and quality
 
 ```{r}
-
+ggplot(aes(x=factor(quality), y=alcohol), data=wq)+geom_boxplot(fill='green')+stat_summary(funy = mean, color='black',geom='point', size=2)
 ```
 
 ```{r}
@@ -587,6 +587,11 @@ by(wq$alcohol, wq$quality,summary)
 by(wq$residual.sugar,wq$quality,summary)
 ```
 
+
+
+```{r}
+ggplot(aes(x=factor(quality), y=residual.sugar), data=wq)+geom_boxplot(fill='purple')+stat_summary(funy = mean, color='yellow',geom='point', size=2)
+```
 
 # Bivariate Analysis
 
