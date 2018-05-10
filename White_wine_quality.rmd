@@ -37,7 +37,7 @@ wq <- read.csv('wineQualityWhites.csv')
 names(wq)
 ```
 
-# Introduction to the dataset
+## Introduction to the dataset
 
 This dataset contains data on white variants of the Portuguese "Vinho Verde" 
 wine. There are 11 variables quantifying the chemical properties of each wine. 
@@ -52,7 +52,7 @@ Citation:  P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
 The inputs include objective tests (e.g. PH values) and the output is based on 
 sensory data (median of at least 3 evaluations made by wine experts).
 
-# Description of Attributes
+## Description of Attributes
 
 1. Fixed acidity: most acids involved with wine or fixed or nonvolatile 
   (do not evaporate readily)
@@ -92,12 +92,12 @@ sensory data (median of at least 3 evaluations made by wine experts).
    
 12. Quality (score between 0 and 10)
 
-# Research Question
+## Research Question
 
 This project investigates which chemical properties influence the quality of 
 white wines
 
-# understanding the dataset
+## Understanding the dataset
 
 In this section, we will perform some preliminary exploration of the dataset- 
 
@@ -135,7 +135,7 @@ summary(wq)
 
 ```{r}
 
-any(is.na(wq$quality))
+any(is.na(wq))
 
 ```
 
