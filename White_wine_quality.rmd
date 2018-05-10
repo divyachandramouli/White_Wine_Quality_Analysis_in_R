@@ -136,7 +136,7 @@ summary(wq)
 
 ```{r}
 
-any(is.na(wq))
+any(is.na(wq$quality))
 
 ```
 
@@ -556,12 +556,12 @@ summary(wq$alcohol)
 Let's create an alcohol.bucket variable
 ```{r}
 wq$alcohol.bucket <- cut(wq$alcohol, breaks=c(0,9.5, 12, 15), 
-                      labels=c('low alcohol', 'moderate alcohol', 'high alcohol'))
+                      labels=c('low', 'moderate', 'high'))
 ```
 
 Let's view the dataframe with the alcohol buckets to make sure it is right
 ```{r}
-head(wq)
+summary(wq$alcohol.bucket)
 ```
 
 Let's look at the distribution of wines by alcohol bucket
@@ -573,15 +573,36 @@ qplot(alcohol.bucket, data=wq)
 
 Let's also create a quality bucket variable
 
+```{r}
+summary(wq$quality)
+```
+
+```{r}
+wq$quality.bucket <- cut(wq$quality, breaks=c(0,4,7, 10), 
+                      labels=c('low', 'moderate', 'high'))
+```
+
+Let's view the dataframe with the quality buckets to make sure it is right
+```{r}
+summary(wq$quality.bucket)
+```
+
 
 Boxplot of alcohol level and quality
 
 ```{r}
-ggplot(aes(x=factor(quality), y=alcohol), data=wq)+geom_boxplot(fill='green')+stat_summary(funy = mean, color='black',geom='point', size=2)
+ggplot(aes(x=factor(quality), y=alcohol), data=wq)+geom_boxplot(fill='green')+stat_summary(fun.y = mean, color='black',geom='point', size=2)
 ```
 
+
 ```{r}
-by(wq$alcohol, wq$quality,summary)
+
+```
+
+
+
+```{r}
+by(wq$alcohol.bucket, wq$quality.bucket,summary)
 
 ```
 
