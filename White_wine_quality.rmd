@@ -590,7 +590,7 @@ by(wq$residual.sugar,wq$quality,summary)
 
 
 ```{r}
-ggplot(aes(x=factor(quality), y=residual.sugar), data=wq)+geom_boxplot(fill='purple')+stat_summary(funy = mean, color='yellow',geom='point', size=2)
+ggplot(aes(x=factor(quality), y=residual.sugar), data=wq)+geom_boxplot(fill='orange')+stat_summary(funy = mean, color='brown',geom='point', size=2)
 ```
 
 # Bivariate Analysis
