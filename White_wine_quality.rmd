@@ -236,8 +236,10 @@ ggplot(aes(x= residual.sugar), data = wq)+geom_histogram(binwidth=0.1)+scale_x_l
  
 ````{r echo=FALSE}
 ggplot(aes(x= chlorides), data = wq)+geom_histogram(binwidth=0.0005)
-```
+
+````
  
+
 
 The distribution of chloride values looks skewed to the right with a thin and 
 long tail on the right
