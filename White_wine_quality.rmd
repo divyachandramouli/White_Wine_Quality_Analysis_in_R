@@ -371,8 +371,7 @@ The goal of this project is to investigate the influence of the physicochemical
 properties on the quality of wine. Therefore, quality rating is one of the main 
 features of interest along with some other properties. 
 
-### What other features in the dataset do you think will help support your
-### investigation into your feature(s) of interest?
+### What other features in the dataset do you think will help support your investigation into your feature(s) of interest?
 
 Since quality rating is from sensory data, residual sugar and pH could affect the
 sweetness/taste of wine and alcohol content could affect the experience of wine
@@ -386,9 +385,9 @@ No, from just univariate exploration, it could not be ascertained if new variabl
 need to be created.It will be looked at if further exploration gives rise to 
 the need for creating more variables
 
-### Of the features you investigated, were there any unusual distributions? \
-Did you perform any operations on the data to tidy, adjust, or change the form \
-of the data? If so, why did you do this?
+### Of the features you investigated, were there any unusual distributions? 
+### Did you perform any operations on the data to tidy, adjust, or change the form 
+### of the data? If so, why did you do this?
 
 The data was assessed for missing or duplicate values. It appeared fairly tidy 
 and prepared for analysis. Some distributions were heavily skewed, so I used
@@ -397,24 +396,13 @@ the distribution
 
 # Bivariate Plots Section
 
-> **Tip**: Based on what you saw in the univariate plots, what relationships
-between variables might be interesting to look at in this section? Don't limit
-yourself to relationships between a main output feature and one of the
-supporting variables. Try to look at relationships between supporting variables
-as well.
-
 Let us look at a scatterplot matrix to explore relationships between variables. 
-Let us leave 'quality' (it is a categorical ordinal variable)
-and 'X' (which is the index/count) out.  
-
-```{r}
-names(wq_1)
-```
+Let us leave 'X' (which is the index/count) out.  ```
 
 
 ```{r echo=FALSE, Bivariate_Plots}
 wq_1 = wq[,c(2:12)]
-ggpairs(wq_1 )+
+ggpairs(wq[,c(2:13)])+
 theme_minimal()
 ```
 
@@ -425,15 +413,16 @@ We get a fair idea of the relationships from the scatterplot matrix but it would
 be useful to go into the Pearson correlation coefficients for the variables excluding 
 quality
 It does not make sense to include the 'X' variable which is the index, when we
-want to look at correlations. Since quality is a categorical ordinal variable, 
-the Spearman correlation coefficient should be calculated.
+want to look at correlations. 
+Since quality is a categorical ordinal variable, the Spearman correlation
+coefficient should be calculated.
 So I am using the dataframe excluding X and quality to look at 
 Pearson coefficients
 
 
 Let us generate a correlation matrix to get a visual idea about the strength of the relationships
 
-```{r}
+```{r echo=FALSE}
 ggcorr(wq_1, label=TRUE,label_color='black')
 ```
 
@@ -460,14 +449,14 @@ so this relationship seems to make sense
 Let's plot the moderate correlations 
 
 Fixed acidity vs pH
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=fixed.acidity, y=pH), data=wq)+geom_point(alpha=1/10)+geom_smooth(method='lm')
   
 ```
 
 Free Sulphur dioxide vs Total sulphur dioxide
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=free.sulfur.dioxide, y=total.sulfur.dioxide), data=wq)+geom_point(alpha=1/10)+geom_smooth(method='lm')+scale_x_continuous(limits=c(0,200))
 ```
 
@@ -475,7 +464,7 @@ Let us visualize the strong relationships:
 
 Residual sugar vs density 
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point()
 ```
 
@@ -483,7 +472,7 @@ ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point()
 Let's limit the axis to exclude outliers, reduce overplotting and look at the 
 plot with a linear trendline
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point(alpha=1/40)+
   scale_x_continuous(limits=c(0.98, 1.015))+
   scale_y_continuous(limits=c(0,40))+geom_smooth(method='lm')
@@ -491,13 +480,13 @@ ggplot(aes(x=density, y=residual.sugar), data=wq)+geom_point(alpha=1/40)+
 
 Let us visualize the relationship between alcohol and density
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=wq)+geom_point()
 ```
 
 Let's reduce overplotting and look at the plot again with a linear trendline,
 excluding two outliers
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=subset(wq, wq$density<1.01))+
   geom_point(alpha=1/20,position='jitter')+
   geom_smooth(method = 'lm')
@@ -513,7 +502,7 @@ could be more complex but more suited methods to accomplish this.
 The following are the Spearman correlation coefficients for all variables with 
 quality:
 
-```{r}
+```{r echo=FALSE}
 cor(wq[, c(2:13)],
     method = 'spearman')[ ,12]
 ```
@@ -527,8 +516,8 @@ From the above values we find that
 
 #### Discrete Quality Variable
 
-It would be helpful to create a discrete quality variable
-```{r}
+It would be helpful to create a discrete quality variable and view the summary
+```{r echo=FALSE}
 wq$quality.discrete=factor(wq$quality)
 summary(wq$quality.discrete)
 ```
@@ -536,33 +525,31 @@ summary(wq$quality.discrete)
 
 Let's also create a quality bucket variable
 
-```{r}
+Summary of quality variable
+```{r echo=FALSE}
 summary(wq$quality)
 ```
 
-```{r}
+
+```{r echo=FALSE}
 wq$quality.bucket <- cut(wq$quality, breaks=c(0,4,7, 10), 
                       labels=c('low', 'moderate', 'high'))
 ```
 
-Let's view the dataframe with the quality buckets to make sure it is right
-```{r}
+Summary of quality buckets:
+```{r echo=FALSE}
 summary(wq$quality.bucket)
 ```
-Distribution of wines by quality bucket
 
-```{r}
-qplot(quality.bucket, data=wq)
-```
 #### Residual Sugar bucket variable
 
 Summary statistics for residual sugar
-```{r}
+```{r echo=FALSE}
 summary(wq$residual.sugar)
 ```
-Let's create a residual.sugar.bucket variable
+Let's create a residual.sugar.bucket variable and view the summary
 
-```{r}
+```{r echo=FALSE}
 wq$residual.sugar.bucket <- cut(wq$residual.sugar, breaks = c(-Inf, 2,7.5,Inf), 
                                 labels= c('Low', 'Medium','High'))
 summary(wq$residual.sugar.bucket)
@@ -573,50 +560,41 @@ summary(wq$residual.sugar.bucket)
 #### Alcohol Bucket Variable
 
 Let's create an alcohol.bucket variable
-```{r}
+```{r echo=FALSE}
 wq$alcohol.bucket <- cut(wq$alcohol, breaks=c(0,9.5, 12, 15), 
                       labels=c('low', 'moderate', 'high'))
 ```
 
 Summary Statistics for the alcohol bucket variable:
-```{r}
+```{r echo=FALSE}
 summary(wq$alcohol.bucket)
 ```
 
-Let's look at the distribution of wines by alcohol bucket
 
-```{r}
-qplot(alcohol.bucket, data=wq)
-```
 
 #### Density Bucket Variable
 
-```{r}
+Summary of density
+```{r echo=FALSE}
 summary(wq$density)
 ```
 
 Let's create a density.bucket variable
-```{r}
+```{r echo=FALSE}
 wq$density.bucket <- cut(wq$density, breaks=c(-Inf,0.992, 0.9955, Inf), 
                       labels=c('low', 'medium', 'high'))
 ```
 
 Summary Statistics for the alcohol bucket variable:
-```{r}
+```{r echo=FALSE}
 summary(wq$density.bucket)
-```
-
-Let's look at the distribution of wines by density bucket
-
-```{r}
-qplot(density.bucket, data=wq)
 ```
 
 
 ### Quality vs Chloride
 Let's plot discrete quality ratings and chloride values to visualize the relationship
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=quality.discrete, y=chlorides), data=wq)+geom_boxplot(aes(color=quality.discrete))+stat_summary(fun.y=mean,geom='point')
 ```
 
@@ -627,19 +605,19 @@ values for the high quality wines are slightly lesser than the lower quality win
 #### Quality vs Density
 
 Let's look at the boxplot of density vs quality, excluding some density outliers
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=quality.discrete, y=density), data=wq)+geom_boxplot(aes(color=quality.discrete))+stat_summary(fun.y=mean,geom='point')+coord_cartesian(ylim=c(0.985,1.01))
 ```
 
 
 Summary statistics for wine density
 
-```{r}
+```{r echo=FALSE}
 summary(wq$density)
 ```
 
 Results for density statistics by quality level:
-```{r}
+```{r echo=FALSE}
 with(wq,by(density,quality,summary))
 ```
 
@@ -647,14 +625,14 @@ with(wq,by(density,quality,summary))
 
 
 Summary statistics for density by quality.bucket:
-```{r}
+```{r echo=FALSE}
 with(wq,by(density,quality.bucket,summary))
 ```
 
 
 Summary statistics for density bucket by quality bucket:
 
-```{r}
+```{r echo=FALSE}
 with(wq,by(density.bucket,quality.bucket,summary))
 ```
 
@@ -668,7 +646,7 @@ that of low quality wines
 #### Quality vs Alcohol
 
 Let's look at the boxplot of alcohol vs quality
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=quality.discrete, y=alcohol), data=wq)+geom_boxplot(aes(color=quality.discrete))+stat_summary(fun.y=mean,geom='point')
 ```
 
@@ -677,15 +655,15 @@ the quality of wine gets better.
 
 Summary Statistics for Alcohol bucket variable
 
-```{r}
+```{r echo=FALSE}
 summary(wq$alcohol)
 ```
-```{r}
+```{r echo=FALSE}
 summary(wq$quality.bucket)
 ```
 
 
-```{r}
+```{r echo=FALSE}
 summary(subset(wq,quality >7)$alcohol > 10.51)
 ```
 
@@ -693,7 +671,7 @@ More than 80% of high quality wines have alcohol content greater than the mean
 alcohol content in wines
 
 Summary Statistics for Alcohol bucket by Quality bucket
-```{r}
+```{r echo=FALSE}
 with(wq, by(alcohol.bucket,quality.bucket,summary))
 ```
 Only 5% of low quality wines have high alcohol content, while about 
@@ -747,7 +725,7 @@ Let us subset the data to look at only low and high quality wines to see if we
 can get clearer insight
 
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=density, y=residual.sugar), data= subset(wq, wq$density < 1.01 & wq$quality.bucket != 'moderate'))+
 geom_point(aes(color=quality.bucket))
 
@@ -758,7 +736,7 @@ than the lower quality wines which is interesting.
 Now let us color the density vs residual sugar plot by alcohol bucket
 
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=density, y=residual.sugar), data=subset(wq,wq$density < 1.01))+geom_point(aes(color=alcohol.bucket))+
 scale_color_brewer(type='seq')
 ```
@@ -771,7 +749,7 @@ lower
 Let us facet the density vs residual sugar plot colored by alcohol
 using quality.discrete
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=density, y=residual.sugar), data=subset(wq,wq$density < 1.01))+geom_point(aes(color=alcohol.bucket))+
 scale_color_brewer(type='seq')+facet_wrap(~quality.discrete)
 ```
@@ -783,7 +761,7 @@ As the quality rating increases, wines have higher alcohol and lower density
 
 Let us add quality bucket tto our density vs alcohol plot excluding density 
 outliers
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=subset(wq, wq$density<1.01))+
   geom_point(aes(color=quality.bucket),position='jitter')+
   scale_color_brewer(type="seq")
@@ -793,7 +771,7 @@ Again we see that the moderate quality wines are dominant
 Let us subset the data to include only low and high quality wines
 
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=subset(wq, wq$density<1.01 & wq$quality.bucket != 'moderate'))+
   geom_point(aes(color=quality.bucket))
 ```
@@ -803,7 +781,7 @@ and lower density. At lower alcohol levels, the variation in density is more
 
 Let us color the density vs alcohol plot by residual sugar 
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=subset(wq, wq$density<1.01))+
   geom_point(aes(color=residual.sugar.bucket),position='jitter')+
   scale_color_brewer(type="seq")
@@ -814,7 +792,7 @@ alcohol content
 
 Now let's facet this graph by quality
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=alcohol, y=density), data=subset(wq, wq$density<1.01))+
   geom_point(aes(color=residual.sugar.bucket),position='jitter')+
   scale_color_brewer(type="seq")+facet_wrap(~quality.discrete)
@@ -826,7 +804,7 @@ are dominated by wines with high residual sugar
 Since alcohol vs quality was the strongest relationship we saw among all
 the relationships with quality, let's explore that by coloring it by residual sugar
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=quality.discrete, y=alcohol), data=wq)+geom_point(aes(color=residual.sugar.bucket))
 ```
 
