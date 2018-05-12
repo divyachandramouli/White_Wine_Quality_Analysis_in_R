@@ -261,7 +261,7 @@ ggplot(aes(x= chlorides), data = wq)+geom_histogram(binwidth=0.0005)+
 #### Free Sulphur dioxide
  
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= free.sulfur.dioxide), data = wq)+geom_histogram(binwidth =1)
 ```
  The distribution of free sulphurdioxide looks skewed to the right with an 
@@ -269,7 +269,7 @@ ggplot(aes(x= free.sulfur.dioxide), data = wq)+geom_histogram(binwidth =1)
  
 #### Total Sulphur dioxide
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram(binwidth=1)
 ```
  The bulk of total sulphur dioxide data looks normally distributed with a 
@@ -277,21 +277,16 @@ ggplot(aes(x= total.sulfur.dioxide), data = wq)+geom_histogram(binwidth=1)
  
 #### Density
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= density), data = wq)+geom_histogram(binwidth=0.0001)
 ```
 The distribution of density looks almost normally distributed 
-
-
-```{r}
-summary(wq$density)
-```
-
-Few wines seem to have a density greater than 1 
+Few wines seem to have a density greater than 1 - most probably they should be 
+outliers
 
 #### pH
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= pH), data = wq)+geom_histogram(binwidth=0.001)
 ```
 
@@ -300,7 +295,7 @@ expect pH / acidity to be key factors influencing the quality of wine
 
 #### Sulphates
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= sulphates), data = wq)+geom_histogram(binwidth=0.01)
 ```
  
@@ -309,7 +304,7 @@ ggplot(aes(x= sulphates), data = wq)+geom_histogram(binwidth=0.01)
  Let us transform the sulphates axis on a log10 scale
  
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= sulphates), data = wq)+geom_histogram(binwidth=0.01)+
   scale_x_log10()
 ```
@@ -318,7 +313,7 @@ transformation
  
 #### Alcohol
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= alcohol), data = wq)+geom_histogram(binwidth=0.01)
 ```
  
@@ -326,7 +321,7 @@ ggplot(aes(x= alcohol), data = wq)+geom_histogram(binwidth=0.01)
  
  let us try a log10 transform on alcohol level data
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= alcohol), data = wq)+geom_histogram()+
   scale_x_log10()
 ```
@@ -336,7 +331,7 @@ distributed
 
 Let us try a sqrt transform on the alcohol level data
 
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x= alcohol), data = wq)+geom_histogram()+
   scale_x_sqrt()
 ```
@@ -349,7 +344,7 @@ quality
 
 #### Quality
  
-```{r}
+```{r echo=FALSE}
 ggplot(aes(x=quality), data = wq)+ geom_histogram()
 ```
  
@@ -376,8 +371,8 @@ The goal of this project is to investigate the influence of the physicochemical
 properties on the quality of wine. Therefore, quality rating is one of the main 
 features of interest along with some other properties. 
 
-### What other features in the dataset do you think will help support your \
-investigation into your feature(s) of interest?
+### What other features in the dataset do you think will help support your
+### investigation into your feature(s) of interest?
 
 Since quality rating is from sensory data, residual sugar and pH could affect the
 sweetness/taste of wine and alcohol content could affect the experience of wine
